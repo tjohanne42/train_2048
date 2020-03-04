@@ -1,11 +1,49 @@
 #include "train_2048.h"
 
+static void			init_s_value(void)
+{
+	size_t			i = 0;
+	SDL_Color		color = {0, 0, 0, 255};
+	char			*str;
+
+	str = NULL;
+	while (i < 12)
+	{
+		game.s_value[i] = NULL;
+		if (!(str = ft_itoa(ft_sqrt(2, i + 1))))
+			ftmix_exit_error("ft_itoa");
+		if (!(game.s_value[i] = TTF_RenderText_Blended(ftmix.font[30], str, color)))
+			ftmix_exit_error("TTF_RenderText_Blended");
+		free(str);
+		str = NULL;
+		i++;
+		if (i == 2)
+		{
+			color.r = 255;
+			color.g = 255;
+			color.b = 255;
+			color.a = 255;
+		}
+	}
+}
+
 static void			free_game(void)
 {
+	size_t			i = 0;
+
 	if (game.cases)
 	{
 		free(game.cases);
 		game.cases = NULL;
+	}
+	while (i < 12)
+	{
+		if (game.s_value[i])
+		{
+			SDL_FreeSurface(game.s_value[i]);
+			game.s_value[i] = NULL;
+		}
+		i++;
 	}
 }
 
@@ -73,6 +111,7 @@ void		start_game(size_t size)
 	if (!done)
 	{
 		atexit(free_game);
+		init_s_value();
 		done = SDL_TRUE;
 	}
 	else

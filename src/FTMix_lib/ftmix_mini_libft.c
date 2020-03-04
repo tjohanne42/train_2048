@@ -1,5 +1,58 @@
 #include "ftmix_lib.h"
 
+size_t		ft_nblen(int nb)
+{
+	size_t	i = 0;
+
+	if (nb < 0)
+	{
+		nb *= -1;
+		i++;
+	}
+	while (nb >= 10)
+	{
+		nb = nb / 10;
+		i++;
+	}
+	return (i + 1);
+}
+
+char		*ft_itoa(int x)
+{
+	char 	*str;
+	size_t	len = ft_nblen(x);
+	size_t	i = 0;
+	size_t	neg = 0;
+
+	str = NULL;
+	if (!(str = malloc(sizeof(*str) * (len + 1))))
+		return (NULL);
+	if (x < 0)
+	{
+		neg = 1;
+		x *= -1;
+	}
+	while (i < len)
+	{
+		str[len - i - 1] = x % 10 + '0';
+		x = x / 10;
+		i++;
+	}
+	str[len] = '\0';
+	if (neg == 1)
+		str[0] = '-';
+	return (str);
+}
+
+int		ft_sqrt(int x, int power)
+{
+	if (power < 0)
+		return (0);
+	if (power == 0)
+		return (1);
+	return (x * ft_sqrt(x, power - 1));
+}
+
 int		ft_strcmp(const char *s1, const char *s2)
 {
 	int		i;

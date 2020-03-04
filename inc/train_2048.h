@@ -9,6 +9,7 @@ typedef	struct 		t_game
 {
 	unsigned int	*cases;
 	size_t			nb;
+	SDL_Surface		*s_value[12];
 }					s_game;
 
 s_game		game;

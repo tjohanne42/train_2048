@@ -34,18 +34,19 @@ _Bool			ftmix_event(SDL_Event event, size_t fps, void (*ptr)(void))
 	}
 	else if (event.type == SDL_MOUSEWHEEL && (tmp = SDL_TRUE))
 		ftmix_volume_wheel(event);
-/*	else if (event.type == SDL_KEYDOWN)
+	else if (event.type == SDL_KEYDOWN)
 	{
-		if (event.key.keysym.sym == SDLK_UP && (tmp = SDL_TRUE))
+		if (event.key.keysym.sym == SDLK_SPACE && (tmp = SDL_TRUE))
+			ftmix_event_pause();
+		/*else if (event.key.keysym.sym == SDLK_UP && (tmp = SDL_TRUE))
 			ftmix_change_volume(2);
 		else if (event.key.keysym.sym == SDLK_DOWN && (tmp = SDL_TRUE))
 			ftmix_change_volume(-2);
-		else if (event.key.keysym.sym == SDLK_SPACE && (tmp = SDL_TRUE))
-			ftmix_event_pause();
 		else if (ftmix.music.len[ftmix.music.actual] != 0 && event.key.keysym.sym == SDLK_LEFT && (tmp = SDL_TRUE))
 			ftmix_change_timer(-5000);
 		else if (ftmix.music.len[ftmix.music.actual] != 0 && event.key.keysym.sym == SDLK_RIGHT && (tmp = SDL_TRUE))
-			ftmix_change_timer(5000);
-	}*/
+			ftmix_change_timer(5000);*/
+		
+	}
 	return (tmp);
 }
